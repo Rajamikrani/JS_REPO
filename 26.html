@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ten Most Frequent Words</title>
+    <script>
+        function tenMostFrequentWords() {
+            // Get user input from the text area
+            let inputText = document.getElementById("userInput").value;
+
+            // Convert input to lowercase, remove punctuation and split into words
+            let words = inputText.toLowerCase().replace(/[^\w\s]/g, '').split(/\s+/);
+
+            // Create an object to count the frequency of each word
+            let wordCount = {};
+
+            // Count the frequency of each word
+            words.forEach(word => {
+                if (wordCount[word]) {
+                    wordCount[word]++;
+                } else {
+                    wordCount[word] = 1;
+                }
+            });
+
+            // Convert the wordCount object into an array of [word, count] pairs
+            let wordArray = Object.entries(wordCount);
+
+            // Sort the array based on frequency (count)
+            wordArray.sort((a, b) => b[1] - a[1]);
+
+            // Get the top 10 most frequent words
+            let top10Words = wordArray.slice(0, 10);
+
+            // Display the result
+            let resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "<h3>Top 10 Most Frequent Words:</h3>";
+            top10Words.forEach(([word, count], index) => {
+                resultDiv.innerHTML += `${index + 1}. ${word} - ${count} times<br>`;
+            });
+        }
+    </script>
+</head>
+<body>
+    <h2>Enter a Text to Find the 10 Most Frequent Words</h2>
+
+    <!-- Text area for user input -->
+    <textarea id="userInput" rows="10" cols="50"></textarea><br><br>
+
+    <!-- Button to trigger the function -->
+    <button onclick="tenMostFrequentWords()">Get Top 10 Words</button>
+
+    <!-- Div to display the result -->
+    <div id="result"></div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Generator</title>
+    <style>
+        .number {
+            display: inline-block;
+            padding: 5px;
+            margin: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .even {
+            background-color: green;
+            color: white;
+        }
+
+        .odd {
+            background-color: yellow;
+            color: black;
+        }
+
+        .prime {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Enter a Number to Generate 1 to N and Mark Even, Odd, and Prime Numbers</h2>
+
+<!-- Input and Button -->
+<input type="number" id="userInput" placeholder="Enter a number" min="1">
+<button onclick="generateNumbers()">Generate Numbers</button>
+
+<!-- Div to display the result -->
+<div id="numberContainer"></div>
+
+<script>
+    // Function to check if a number is prime
+    function isPrime(num) {
+        if (num <= 1) return false;
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i === 0) return false;
+        }
+        return true;
+    }
+
+    // Function to generate and mark numbers
+    function generateNumbers() {
+        let container = document.getElementById('numberContainer');
+        container.innerHTML = ''; // Clear previous results
+
+        let n = parseInt(document.getElementById("userInput").value);
+
+        if (isNaN(n) || n <= 0) {
+            alert("Please enter a valid number greater than 0.");
+            return;
+        }
+
+        for (let i = 1; i <= n; i++) {
+            let numberDiv = document.createElement('div');
+            numberDiv.classList.add('number');
+
+            // Check if the number is prime
+            if (isPrime(i)) {
+                numberDiv.classList.add('prime');
+            }
+            // Check if the number is even
+            else if (i % 2 === 0) {
+                numberDiv.classList.add('even');
+            }
+            // Else it's an odd number
+            else {
+                numberDiv.classList.add('odd');
+            }
+
+            numberDiv.textContent = i;
+            container.appendChild(numberDiv);
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Coloring</title>
+    <style>
+        .number {
+            display: inline-block;
+            padding: 5px;
+            margin: 5px;
+            text-align: center;
+            width: 40px;
+            font-weight: bold;
+        }
+
+        .even {
+            background-color: green;
+            color: white;
+        }
+
+        .odd {
+            background-color: yellow;
+            color: black;
+        }
+
+        .prime {
+            background-color: red;
+            color: white;
+        }
+    </style>
+    <script>
+        function isPrime(num) {
+            if (num <= 1) return false;
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+        function generateNumbers() {
+            let container = document.getElementById('numberContainer');
+
+            // Loop from 0 to 100
+            for (let i = 0; i <= 100; i++) {
+                let numberDiv = document.createElement('div');
+                numberDiv.classList.add('number');
+
+                // Check if the number is prime
+                if (isPrime(i)) {
+                    numberDiv.classList.add('prime');
+                } 
+                // Check if the number is even
+                else if (i % 2 === 0) {
+                    numberDiv.classList.add('even');
+                } 
+                // Else it's an odd number
+                else {
+                    numberDiv.classList.add('odd');
+                }
+
+                numberDiv.textContent = i;
+                container.appendChild(numberDiv);
+            }
+        }
+
+        // Call generateNumbers when the page loads
+        window.onload = generateNumbers;
+    </script>
+</head>
+<body>
+
+    <h2>Numbers 0 to 100 with Color Coding</h2>
+
+    <!-- Div container where numbers will be appended -->
+    <div id="numberContainer"></div>
+
+</body>
+</html>

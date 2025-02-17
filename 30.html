@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countries Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        td {
+            width: 16%;
+        }
+    </style>
+</head>
+<body>
+
+<h2>List of 50 Countries</h2>
+
+<!-- Table to display countries -->
+<table id="countriesTable">
+    <thead>
+        <tr>
+            <th>Country 1</th>
+            <th>Country 2</th>
+            <th>Country 3</th>
+            <th>Country 4</th>
+            <th>Country 5</th>
+            <th>Country 6</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script>
+    // Array of 50 countries (for simplicity, using 50 example countries)
+    const countries = [
+        "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria",
+        "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan",
+        "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia",
+        "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica",
+        "Croatia", "Cuba", "Cyprus", "Czech Republic", "Democratic Republic of the Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic",
+        "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia"
+    ];
+
+    // Function to display the countries in a table with 6 per row
+    function displayCountries() {
+        const tableBody = document.getElementById("countriesTable").getElementsByTagName('tbody')[0];
+        let row;
+
+        for (let i = 0; i < countries.length; i++) {
+            // Create a new row every 6 countries
+            if (i % 6 === 0) {
+                row = document.createElement("tr");
+                tableBody.appendChild(row);
+            }
+
+            // Create a new cell for the current country and append it to the row
+            const cell = document.createElement("td");
+            cell.textContent = countries[i];
+            row.appendChild(cell);
+        }
+    }
+
+    // Call the function to display the countries when the page loads
+    window.onload = displayCountries;
+</script>
+
+</body>
+</html>
